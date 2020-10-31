@@ -1,0 +1,47 @@
+
+
+To create the initial database, just import the db object from an interactive Python shell and run the SQLAlchemy.create_all() method to create the tables and database:
+
+>>> from yourapplication import db
+>>> db.create_all()
+
+ImportError: No module named MySQLdb
+
+In ubuntu 20 , you can try this :
+
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install gcc
+pip install mysqlclient
+
+
+user1 = User(username='ABC', email='abc@demo.com', password='somepassword')
+user2 = User(username='XYZ', email='xyz@demo.com', password='somepassword')
+
+db.session.add(user1)
+db.session.add(user2)
+db.session.commit()
+
+user = User.query.all()
+user = User.query.first()
+user = User.query.filter(username='ABC')
+
+user.id
+
+post1 = Post(title='First Blog', content='First Blog Content', user_id=user.id)
+post2 = Post(title='Second Blog', content='Second Blog Content', user_id=user.id)
+
+db.sesion.add(post1)
+db.session.add(post2)
+db.session.commit()
+
+user.posts
+
+for post in user.posts:
+    print(post.title)
+
+post = Post.query.first()
+post.user_id
+
+someUser = post.author 
+
+db.drop_all()
